@@ -42,7 +42,7 @@ public class Main {
         }
         userInput.nextLine();
 
-        // Prompt users for add ons
+        // Prompt users for add-ons
         System.out.println("to get started would you toll tag for your vehicle              y/n");
         while (x == 0) {
             String userString = userInput.next();
@@ -63,7 +63,7 @@ public class Main {
             String userString = userInput.next();
             switch (userString.toLowerCase()) {
                 case "y":
-                    customerDailyRate += upchargePremium;
+                    customerDailyRate += upchargeBasic;
                     x++;
                     break;
                 case "n":

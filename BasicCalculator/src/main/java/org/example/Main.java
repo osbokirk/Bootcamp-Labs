@@ -12,6 +12,8 @@ public class Main {
         Float secondNumber = (float) 0;
         int x = 0;
         Float sum;
+        String userInput1 ="Enter the first Number :";
+        String userInput2 ="Enter the second Number :";
 
         //prompt user for 1st input and save the value
         while (x == 0) {
@@ -45,23 +47,39 @@ public class Main {
         if (artimitic.length() == 1 && options.contains(artimitic)) {
 
             if (artimitic.equalsIgnoreCase("A")) {
-            sum = firstNumber + secondNumber;
+            sum = add(firstNumber,secondNumber);
             System.out.println(sum);
             }
             else if (artimitic.equalsIgnoreCase("S")) {
-            sum = firstNumber - secondNumber;
+            sum = subtract(firstNumber,secondNumber);
             System.out.println(sum);
             }
             else if (artimitic.equalsIgnoreCase("M")) {
-            sum = firstNumber * secondNumber;
+            sum = multiply(firstNumber,secondNumber);
             System.out.println(sum);
             }
             else if (artimitic.equalsIgnoreCase("D")) {
-            sum = firstNumber / secondNumber;
+            sum = divide(firstNumber,secondNumber);
             System.out.println(sum);
             }
         } else{
             System.out.println("Sorry invalid option");
         }
     }
+
+    public static Float multiply (Float firstNumber,Float secondNumber){
+        return (firstNumber * secondNumber);
+    }
+    public static Float add (Float firstNumber,Float secondNumber){
+        return (firstNumber + secondNumber);
+    }
+    public static Float divide(Float firstNumber, Float secondNumber){
+        return (firstNumber/secondNumber);
+    }
+    public static Float subtract(Float firstNumber,Float secondNumber){
+        return (firstNumber - secondNumber);
+    }
+    public static Float userInputLoop()
+
+
 }
