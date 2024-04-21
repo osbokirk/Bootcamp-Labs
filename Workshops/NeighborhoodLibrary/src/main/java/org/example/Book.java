@@ -5,10 +5,13 @@ public class Book {
     private String isbn;
     private String title;
     private boolean isCheckout = false;
-    private String checkedOutTo = "null";
-    private String checkoutResponce= "Thank You Return It Shortly";
-    private String checkinResponce = "Thank You For Returning this";
-    private String text;
+    private String checkedOutTo = "";
+
+    public Book(int id, String title, String isbn) {
+        this.id = id;
+        this.title = title;
+        this.isbn = isbn;
+    }
 
     public String getIsbn() {
         return isbn;
@@ -16,11 +19,6 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    public Book(int id, String title) {
-        this.id = id;
-        this.title = title;
     }
 
     public int getId() {
@@ -55,34 +53,14 @@ public class Book {
         this.checkedOutTo = checkedOutTo;
     }
 
-    public void checkOut(String name){
-
-    }
-    public void checkIn(){
-
+    public void checkOut(String name) {
+        this.setCheckout(true);
+        this.setCheckedOutTo(name);
     }
 
-    public String getCheckoutResponce() {
-        return checkoutResponce;
+    public void checkIn() {
+        this.setCheckout(false);
+        this.setCheckedOutTo("");
     }
 
-    public void setCheckoutResponce(String checkoutResponce) {
-        this.checkoutResponce = checkoutResponce;
-    }
-
-    public String getCheckinResponce() {
-        return checkinResponce;
-    }
-
-    public void setCheckinResponce(String checkinResponce) {
-        this.checkinResponce = checkinResponce;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
 }
