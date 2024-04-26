@@ -3,26 +3,35 @@ package org.example;
 import java.util.Scanner;
 
 public class Main {
+    //public static final String ANSI_RESET = ("\u001B[0m");
+
+    //public static final String ANSI_RED_BACKGROUND = ("\u001B[41m");
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("""
-                Which Calculator Would You Like To Use\n
-                1) MORTGAGE CALCULATOR \n 
-                2) FUTURE VALUE CALCULATOR \n
-                3) PRESENT VALUE CALULATOR """);
-        int choice = scanner.nextInt();
-        switch (choice){
-            case 1:
-                Main.mortgageCalc();
-                break;
-            case 2:
-                Main.futureValue();
-                break;
-            case 3:
-                Main.presentValue();
-                break;
-            default:
-                System.out.println("Sorry You Did Not Input a Valid Option :( GOODBYE");
+        int x = 0;
+        while (x == 0) {
+            System.out.println("""
+                    Which Calculator Would You Like To Use\n
+                    1) MORTGAGE CALCULATOR \n 
+                    2) FUTURE VALUE CALCULATOR \n
+                    3) PRESENT VALUE CALULATOR \n""");
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    Main.mortgageCalc();
+                    x++;
+                    break;
+                case 2:
+                    Main.futureValue();
+                    x++;
+                    break;
+                case 3:
+                    Main.presentValue();
+                    x++;
+                    break;
+                default:
+                    System.out.println("Sorry You Did Not Input a Valid Option :( Try Again\n");
+            }
         }
     }
 
@@ -36,19 +45,21 @@ public class Main {
             N = The total amount of months in your timeline for paying off your mortgage
           */
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please Enter Your Loan Lenght In Years");
+        System.out.println("\nPlease Enter Your Loan Lenght In Years");
         int loanLenght = scanner.nextInt() * 12;//in months
         scanner.nextLine();
         System.out.println("Please Enter Your Principal Ammount");
         float principal = scanner.nextFloat();
-        float interestRate = 07.625f; //scanner.nextFloat();
+        System.out.println("Please Enter Your Interest Rate");
+        float interestRate = scanner.nextFloat();
 
         double monthlyPayment = principal*((interestRate/1200 * Math.pow(1+(interestRate/1200),(loanLenght))) /
                 (Math.pow(((1 + interestRate/1200)),(loanLenght))-1));
-
+        System.out.print( "Your Monthly Payment Is ");
         System.out.printf("%.2f",monthlyPayment);
-        System.out.println();
+        System.out.print(" And You'll Pay A Total Of ");
         System.out.printf("%.2f",((monthlyPayment*loanLenght) - principal));
+        System.out.println(" In Interest");
     }
 
     //takes in a one time deposit and calculated future value total and gives interest accrued
