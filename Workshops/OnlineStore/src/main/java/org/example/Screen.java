@@ -4,12 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.invoke.SwitchPoint;
-import java.sql.SQLOutput;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.BiConsumer;
+
 
 import static org.example.Main.cart;
 import static org.example.Main.inventory;
@@ -79,17 +78,13 @@ public class Screen {
         switch (input){
             case "1":
                 //filter;
-                System.out.println("""
-                        would you like to filter by 
-                      
-                        1)Department 
-                        2)Price""");
-
+               filter();
                 break;
             case "2":
                 System.out.println("Please enter the term you'd like to check");
                 String searchTerm = scanner.nextLine();
                 search(searchTerm);
+                displayItems();
 
                 //search
                 break;
@@ -108,14 +103,17 @@ public class Screen {
         for (int x = 0; x<inventory.size();x++){
             if (input.equalsIgnoreCase((inventory.get(x).getProductName()))||
                     input.equalsIgnoreCase(inventory.get(x).getSKU())){
-                if (cart.containsKey(inventory.get(x))){
+                if (cart.size() > 0 || cart.containsKey(inventory.get(x))){
                     cart.replace(inventory.get(x),cart.get(inventory.get(x))+1);
+                    System.out.println(inventory.get(x).getProductName() +"Was Added To Cart");
                 }else{
                     cart.put(inventory.get(x),1);
+                    System.out.println(inventory.get(x).getProductName() +"Was Added To Cart\n");
                 }
                 break;
             }
         }
+        homeScreen();
     }
 
 
@@ -126,8 +124,8 @@ public class Screen {
     public static void clearAgreageate(){}
     */
     public static void filter(){
-        System.out.println("Would You Like To");
-        for (Product item: inventory){
+        //System.out.println("Would You Like To");
+        //for (Product item: inventory){
             System.out.println("Would you like to filter by \n" +
                     "1)Department \n" +
                     "2)Price\"\"\"");
@@ -136,6 +134,7 @@ public class Screen {
                 System.out.println("enter the department youd like to filter by");
                 String input2 = scanner.nextLine();
                 filterCategory(input2);
+                displayItems();
             }else if(input.equalsIgnoreCase("2")) {
                 try {
                     System.out.println("Enter The Min value");
@@ -145,11 +144,11 @@ public class Screen {
                     Double minimum = Double.parseDouble(min);
                     Double maximum = Double.parseDouble(max);
                     filterPrice(minimum,maximum);
+                    displayItems();
                 }catch (NumberFormatException e){
 
                 }
             }
-        }
     }
 
     public static void filterPrice(Double min,Double max){
@@ -172,7 +171,6 @@ public class Screen {
             if (item.getProductName().contains(term)){
                 System.out.println(item.getSKU()+" | "+item.getProductName());
             }
-
         }
     }
     //displayCart
