@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
      inventory = Screen.importInventory();
      cart = new HashMap<>();
-     Screen.homeScreen();
+     MusicPlayer.MusicPlayer();
+     Screen.welcome();
     }
 }

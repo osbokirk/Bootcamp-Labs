@@ -39,19 +39,32 @@ public class Screen {
         return inventory;
     }
 
-    //home
+
+    public static void welcome(){
+        System.out.println("Hi Welcome To STORE");
+        try{Thread.sleep(1000);}catch (InterruptedException e){}
+        homeScreen();
+    }
+    public static void welcomeBack(){
+        System.out.println("Hi Welcome Back");
+        try{Thread.sleep(1000);}catch (InterruptedException e){}
+        homeScreen();
+    }
+
     public static void homeScreen(){
+
         System.out.println("""
-                Hi Welcome To STORE 
-                Would You Like To 
                 
-                1)Display Products
-                2)Display Cart
-                3)Exit 
+        Would You Like To 
+                
+        1)Display Products
+        2)Display Cart
+        3)Exit 
                 """);
         String input = scanner.nextLine();
         switch (input){
             case "1":
+                printInventory();
                 displayItems();
                 break;
             case "2":
@@ -64,15 +77,14 @@ public class Screen {
 
     //displayItems
     public static void displayItems(){
-        for (int x = 0; x < inventory.size();x++){
-            System.out.println(x + ") " + inventory.get(x).getProductName());
-        }
+        try{Thread.sleep(1000);}catch (InterruptedException e){}
         System.out.println("""
-                Would You Like To 
-                1)Filter
-                2)Search
-                3)Add Item Cart
-                4)Go Back
+                
+                            Would You Like To 
+                            1)Filter Inventory 
+                            2)Search Inventory
+                            3)Add Item Cart
+                            4)Go Back
                 """);
         String input = scanner.nextLine();
         switch (input){
@@ -81,12 +93,11 @@ public class Screen {
                filter();
                 break;
             case "2":
-                System.out.println("Please enter the term you'd like to check");
+                System.out.println("Please enter the name you'd like to check");
                 String searchTerm = scanner.nextLine();
                 search(searchTerm);
                 displayItems();
 
-                //search
                 break;
             case "4":
                     homeScreen();
@@ -105,10 +116,10 @@ public class Screen {
                     input.equalsIgnoreCase(inventory.get(x).getSKU())){
                 if (cart.size() > 0 || cart.containsKey(inventory.get(x))){
                     cart.replace(inventory.get(x),cart.get(inventory.get(x))+1);
-                    System.out.println(inventory.get(x).getProductName() +"Was Added To Cart");
+                    System.out.println(inventory.get(x).getProductName() +" Was Added To Cart");
                 }else{
                     cart.put(inventory.get(x),1);
-                    System.out.println(inventory.get(x).getProductName() +"Was Added To Cart\n");
+                    System.out.println(inventory.get(x).getProductName() +" Was Added To Cart");
                 }
                 break;
             }
@@ -128,7 +139,7 @@ public class Screen {
         //for (Product item: inventory){
             System.out.println("Would you like to filter by \n" +
                     "1)Department \n" +
-                    "2)Price\"\"\"");
+                    "2)Price");
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("1")) {
                 System.out.println("enter the department youd like to filter by");
@@ -152,6 +163,7 @@ public class Screen {
     }
 
     public static void filterPrice(Double min,Double max){
+        System.out.println();
         for (Product product : inventory){
             if(product.getPrice() >= min && product.getPrice() <= max){
                 System.out.println(product.getSKU()+" | " + product.getProductName());
@@ -159,6 +171,7 @@ public class Screen {
         }
     }
     public static void filterCategory(String category){
+        System.out.println();
         for (Product product:inventory){
             if (product.getCategory().equalsIgnoreCase(category)){
                 System.out.println(product.getSKU() +" | "+ product.getProductName());
@@ -176,9 +189,22 @@ public class Screen {
     //displayCart
     public static void displayCart(){
         System.out.println("Currently You Have In Your Cart");
+        if(cart.size() == 0){
+            System.out.println("*GASP*");
+            try {
+                Thread.sleep(2000);
+            }catch (InterruptedException e){
+                System.out.println("ZZZZZ *it appears our online attend may have died of shock because you havent found something to add to your cart*");
+            }
+            System.out.println("theres nothing in your cart lets fix that");
+            homeScreen();
+        }else{
+
         for(Product item :cart.keySet()){
             System.out.println(item.getProductName());
         }
+        System.out.printf("And Your Cart Total is ");
+        System.out.printf("%.2f",cartTotal());
         System.out.println("""
                 Would You Like To
                 1)Checkout
@@ -195,6 +221,7 @@ public class Screen {
                 break;
             case "3":
                 homeScreen();
+        }
         }
     }
     public static void checkout(){
@@ -260,5 +287,19 @@ public class Screen {
             }
         }
     }
+    public static void printInventory(){
+        for (int x = 0; x < inventory.size();x++){
+            System.out.println(x + ") " + inventory.get(x).getProductName());
+        }
+    }
+    public static Double cartTotal(){
+        Double sum = 0.0;
+        for(Product products: cart.keySet()){
+           sum += products.getPrice();
+        }
+    return sum;
+    }
+
+
 }
 
