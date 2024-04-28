@@ -12,7 +12,6 @@ public class Main {
     public static void main(String[] args) {
      inventory = Screen.importInventory();
      cart = new HashMap<>();
-     MusicPlayer.MusicPlayer();
      Screen.welcome();
     }
 }

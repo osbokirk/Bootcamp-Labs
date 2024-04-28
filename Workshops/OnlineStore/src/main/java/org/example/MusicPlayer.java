@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MusicPlayer {
-   public static void   MusicPlayer(){
+   public static void   playJams(){
     Scanner scanner  = new Scanner(System.in);
     File file = new File("src/main/resources/Music.wav");
     AudioInputStream audioStream;
@@ -15,9 +15,10 @@ public class MusicPlayer {
         Clip clip = AudioSystem.getClip();
 
         clip.open(audioStream);
-        clip.loop(100);// should change to a whileloop that checks the system condition
+        clip.loop(100);
+        // should change to a whileloop that checks the system condition
 
-        String responce = scanner.next();
+        //String responce = scanner.next();
     }catch(UnsupportedAudioFileException x){
         throw new RuntimeException(x);
     } catch(IOException y){

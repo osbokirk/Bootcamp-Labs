@@ -41,9 +41,11 @@ public class Screen {
 
 
     public static void welcome(){
+        MusicPlayer.playJams();
         System.out.println("Hi Welcome To STORE");
         try{Thread.sleep(1000);}catch (InterruptedException e){}
         homeScreen();
+
     }
     public static void welcomeBack(){
         System.out.println("Hi Welcome Back");
@@ -201,11 +203,12 @@ public class Screen {
         }else{
 
         for(Product item :cart.keySet()){
-            System.out.println(item.getProductName());
+            System.out.println(cart.get(item) +" ..... "+item.getProductName());
         }
         System.out.printf("And Your Cart Total is ");
         System.out.printf("%.2f",cartTotal());
         System.out.println("""
+                
                 Would You Like To
                 1)Checkout
                 2)Remove Item From Cart
@@ -243,7 +246,7 @@ public class Screen {
 
             for (Product items: cart.keySet()){
                 if (i == index){
-                    System.out.println("how many Items woudl you like to remove");
+                    System.out.println("How many Items would you like to remove");
                     String input3 =  scanner.nextLine();
                     try{
                         Integer quantiry = Integer.parseInt(input3);
@@ -257,7 +260,7 @@ public class Screen {
                             displayCart();
                         }
                     }catch (NumberFormatException y){
-                        System.out.println("THATS NOT A NUMBER GET OUT");
+                        System.out.println("THAT'S NOT A NUMBER GET OUT");
                     }
 
                 }
@@ -267,7 +270,7 @@ public class Screen {
         }catch (NumberFormatException e){
             for(Product items : cart.keySet()){
                 if (input2.equalsIgnoreCase(items.getProductName())){
-                    System.out.println("Great How many would you like to remove");
+                    System.out.println("Great How Many Would You Like To Remove");
                     String input3 =  scanner.nextLine();
                     try{
                         Integer quantiry = Integer.parseInt(input3);
@@ -295,7 +298,7 @@ public class Screen {
     public static Double cartTotal(){
         Double sum = 0.0;
         for(Product products: cart.keySet()){
-           sum += products.getPrice();
+           sum += products.getPrice()* cart.get(products);
         }
     return sum;
     }
