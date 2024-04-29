@@ -11,6 +11,16 @@ public class Transaction {
     private String vendor;
     private Double price;
 
+    public Transaction(String date, String time, String description, String vendor, String price) {
+
+
+        this.date = LocalDate.parse(date);
+        this.time = LocalTime.parse(time) ;
+        this.description = description;
+        this.vendor = vendor;
+        this.price = Double.parseDouble(price);
+    }
+
     public LocalDate getDate() {
         return date;
     }
@@ -52,9 +62,23 @@ public class Transaction {
     }
 
     public boolean checkYear(int year){
-        return false;
+        if (this.date.getYear() == year){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     public boolean checkMonth(int month){
-        return false;
+        if (this.date.getMonthValue() == month){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public String toString(){
+        String value = date +"|"+ time+ "|"+description+"|"+vendor+"|"+price;
+        return value;
     }
 }
