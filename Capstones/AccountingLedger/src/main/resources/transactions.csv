@@ -1,6 +1,14 @@
 date|time|description|vendor|amount
-2024-04-29|14:20:45|Movie tickets|Cineplex|-30.00
-2024-04-28|08:45:30|Coffee and pastry|Baker's Brew|-8.50
-2024-04-27|16:10:15|Haircut|Salon Deluxe|-40.00
-2024-04-26|11:55:20|Returned item refund|Tech Emporium|50.00
 2024-04-25|13:40:10|Uber ride|Uber|-15.25
+2024-04-26|11:55:20|Returned item refund|Tech Emporium|50.00
+2024-04-27|16:10:15|Haircut|Salon Deluxe|-40.00
+2024-04-28|08:45:30|Coffee and pastry|Baker's Brew|-8.50
+2024-04-29|14:20:45|Movie tickets|Cineplex|-30.00
+2024-04-30|08:58:01.050525200|description|vendor|10.99
+2024-04-30|08:58:36.618266800|description|vendor|10.99
+2024-04-30|10:32:47.460616700|output|john dear|999.9
+2024-04-30|10:33:20.110716900|99.0|john|999.0
+2024-04-30|10:34:33.947414700|fire|fire|99.0
+2024-04-30|10:35:32.133969600|ventor|ventor|99.73
+2024-04-30|10:35:49.515664|starbucks|target|7.75
+2024-04-30|10:58:49.017518400|dd|dd|99.0

@@ -12,38 +12,43 @@ public class Screen {
     public static void main(){
         System.out.println("""
                                 
-        Would You Like To 
-        D) Make Deposit
-        P) Make A Payment
-        L) Ledger
-        X) EXIT
+                           Would You Like To 
+                            D) Make Deposit
+                           P) Make A Payment
+                              L) Ledger
+                               X) EXIT
         """);
         mainSwitch(scanner.next());
     }
     public static void mainSwitch(String input){
         switch (input.toUpperCase()){
             case "D":
-                //logger.add(Transacion.newDeposit);
+                logger.logDeposit(new Transaction("+"));
+                break;
             case "P":
-                //logger.add(Transaction.newWithdraw);
+                logger.logWithdraw(new Transaction("-"));
+                break;
             case "L":
                 System.out.println(textFormatter.stringCenter("Great Choice!"));
                 ledger();
+                break;
             case "X":
                 System.exit(0);
+                break;
             default:
                 System.out.println("");
         }
+        main();
     }
     public static void ledger(){
         System.out.println("""
-                What Ledger Can I Get For You
-                A) ALL
-                D) Deposits
-                P) Payments
-                R) Reports
-                H) Home
-                """);
+                     What Ledger Can I Get For You
+                               A) ALL
+                            D) Deposits
+                            P) Payments
+                            R) Reports
+                              H) Home
+        """);
         ledgerSwitch(scanner.next());
         main();
     }
@@ -53,9 +58,11 @@ public class Screen {
                 logger.getAll();
                 break;
             case "D":
-                //logger.getDeposits
+                logger.getDeposit();
+                break;
             case "P":
-                //loger.getPayments
+                logger.getPayments();
+                break;
             case "R":
                 System.out.println(textFormatter.stringCenter("All Righty I Have All The Reports Prepped Which One Do You Need"));
                 reports();
@@ -71,14 +78,14 @@ public class Screen {
 
     public static void reports(){
         System.out.println("""
-                1) Month To Date
-                2) Previous Month
-                3) Year To Date
-                4) Previous Year
-                5)Search by Vendor
-                6) Custom Search
-                0) Back
-                """);
+                            1) Month To Date
+                            2) Previous Month
+                            3) Year To Date
+                            4) Previous Year
+                            5) Search by Vendor
+                            6) Custom Search
+                            0) Back
+        """);
        Integer input =  Integer.parseInt(scanner.next());
        Report report =new Report(logger.returnPayments());
        switch (input){

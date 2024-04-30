@@ -24,15 +24,20 @@ public class Logger {
     }
 
     public void logDeposit(Transaction transaction)  {
-        try {
-            this.writer.write(transaction.toString());
+        try(BufferedWriter writer =  new BufferedWriter(new FileWriter(file,true))) {
+            writer.newLine();
+            writer.write(transaction.toString());
+
+
+            //this.writer.write(transaction.toString());
         }catch (IOException e){
             System.out.println(e);
         }
     }
     public void logWithdraw(Transaction transaction){
-        try{
-            Logger.writer.write(transaction.toString());
+        try(BufferedWriter writer =  new BufferedWriter(new FileWriter(file,true))) {
+            writer.newLine();
+            writer.write(transaction.toString());
         }catch(IOException e){
             System.out.println(e);
         }
@@ -74,25 +79,32 @@ public class Logger {
         }
     }
     public void getDeposit(){
-
         String line;
-        try {
-            while ((line = reader.readLine()) != null) ;
-            String[] lineRead = line.split("|");
-            if (!lineRead[4].contains("-")) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
+
+            reader.readLine();
+
+
+            while ((line = reader.readLine()).isEmpty()) ;
+            String[] lineRead = line.split("\\|");
+            if (lineRead[4].contains("-")) {
                 System.out.println(line);
             }
         }catch (IOException e){
-
+            System.out.println("e");
         }
     }
     public void getPayments(){
         String line;
-        try{
-            line= reader.readLine();
-            String[] lineRead =line.split("|");
-            if (!lineRead[4] .contains("-")){
-                System.out.println(line);
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+            reader.readLine();
+            while((line =reader.readLine()) != null){
+            //line= reader.readLine();
+                String[] lineRead =line.split("\\|");
+                if (!lineRead[4] .contains("-")){
+                    System.out.println(line);
+                }
             }
         }catch (IOException e){
             System.out.println(e);
@@ -105,7 +117,7 @@ public class Logger {
             reader.readLine();
 
             while ((line = reader.readLine()) != null) ;
-            String[] lineRead = line.split("|");
+            String[] lineRead = line.split("\\|");
             Transaction transaction = new Transaction(lineRead[0],lineRead[1],lineRead[2],lineRead[3],lineRead[4]);
             transactions.add(transaction);
         }catch (IOException e){
