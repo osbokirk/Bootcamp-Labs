@@ -85,10 +85,11 @@ public class Logger {
             reader.readLine();
 
 
-            while ((line = reader.readLine()).isEmpty()) ;
-            String[] lineRead = line.split("\\|");
-            if (lineRead[4].contains("-")) {
-                System.out.println(line);
+            while ((line = reader.readLine()) != null) {
+                String[] lineRead = line.split("\\|");
+                if (lineRead[4].contains("-")) {
+                    System.out.println(line);
+                }
             }
         }catch (IOException e){
             System.out.println("e");
@@ -102,6 +103,7 @@ public class Logger {
             while((line =reader.readLine()) != null){
             //line= reader.readLine();
                 String[] lineRead =line.split("\\|");
+
                 if (!lineRead[4] .contains("-")){
                     System.out.println(line);
                 }
@@ -113,15 +115,16 @@ public class Logger {
     public List<Transaction> returnPayments(){
         List<Transaction> transactions = new ArrayList<>();
         String line;
-        try {
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             reader.readLine();
-
-            while ((line = reader.readLine()) != null) ;
-            String[] lineRead = line.split("\\|");
-            Transaction transaction = new Transaction(lineRead[0],lineRead[1],lineRead[2],lineRead[3],lineRead[4]);
-            transactions.add(transaction);
+            //reader.readLine();
+            while ((line = reader.readLine()) != null) {
+                String[] lineRead = line.split("\\|");
+                Transaction transaction = new Transaction(lineRead[0],lineRead[1],lineRead[2],lineRead[3],lineRead[4]);
+                transactions.add(transaction);
+            }
         }catch (IOException e){
-
+            System.out.println(e);
         }
         return transactions;
     }

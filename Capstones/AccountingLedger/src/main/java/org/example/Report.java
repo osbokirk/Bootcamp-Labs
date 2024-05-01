@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Report {
-    private List<Transaction> Log;
+    private static List<Transaction> Log;
     private Scanner scanner = new Scanner(System.in);
 
     public Report(List<Transaction> log) {
@@ -44,7 +44,9 @@ public class Report {
             }
         }
     }
-    public void searchVendor(String vendor){
+    public void searchVendor(){
+        Scanner scanner = new Scanner(System.in);
+        String vendor = scanner.nextLine();
         for (Transaction x: Log){
             if (x.getVendor().toLowerCase().contains(vendor.toLowerCase())){
                 System.out.println(x);

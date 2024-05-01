@@ -2,14 +2,36 @@ package org.example;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Screen {
     private static Scanner scanner = new Scanner(System.in);
     private static Logger logger = new Logger();
     private static TextFormatter textFormatter= new TextFormatter();
+    private static Report r = new Report(logger.returnPayments());
+
+    public static void Init(){
+        MusicPlayer.playMusic();
+        System.out.println("""
+                
+                   ▄▄▄▄▄   █     ▄███▄   ▄███▄   █ ▄▄  █     ▄███▄     ▄▄▄▄▄    ▄▄▄▄▄ \s
+                  █     ▀▄ █     █▀   ▀  █▀   ▀  █   █ █     █▀   ▀   █     ▀▄ █     ▀▄
+                ▄  ▀▀▀▀▄   █     ██▄▄    ██▄▄    █▀▀▀  █     ██▄▄   ▄  ▀▀▀▀▄ ▄  ▀▀▀▀▄ \s
+                 ▀▄▄▄▄▀    ███▄  █▄   ▄▀ █▄   ▄▀ █     ███▄  █▄   ▄▀ ▀▄▄▄▄▀   ▀▄▄▄▄▀  \s
+                               ▀ ▀███▀   ▀███▀    █        ▀ ▀███▀                    \s
+                                                   ▀                                  \s
+                                                                                      \s
+                               ▄▄▄▄▄   ████▄   ▄   █      ▄▄▄▄▄                       \s
+                              █     ▀▄ █   █    █  █     █     ▀▄                     \s
+                            ▄  ▀▀▀▀▄   █   █ █   █ █   ▄  ▀▀▀▀▄                       \s
+                             ▀▄▄▄▄▀    ▀████ █   █ ███▄ ▀▄▄▄▄▀    \s       \s
+                  """ );
+        main();
+    }
 
     public static void main(){
+        //MusicPlayer.playMusic();
         System.out.println("""
                                 
                            Would You Like To 
@@ -29,6 +51,7 @@ public class Screen {
                 logger.logWithdraw(new Transaction("-"));
                 break;
             case "L":
+                MusicPlayer.sound(1);
                 System.out.println(textFormatter.stringCenter("Great Choice!"));
                 ledger();
                 break;
@@ -50,6 +73,7 @@ public class Screen {
                               H) Home
         """);
         ledgerSwitch(scanner.next());
+        MusicPlayer.sound(3);
         main();
     }
     public static void ledgerSwitch(String input){
@@ -64,10 +88,12 @@ public class Screen {
                 logger.getPayments();
                 break;
             case "R":
+                MusicPlayer.sound(1);
                 System.out.println(textFormatter.stringCenter("All Righty I Have All The Reports Prepped Which One Do You Need"));
                 reports();
                 break;
             case "H":
+                MusicPlayer.sound(3);
                 main();
                 break;
             default:
@@ -86,9 +112,10 @@ public class Screen {
                             6) Custom Search
                             0) Back
         """);
+        System.out.println(textFormatter.stringCenter("Please Select A Option"));
        Integer input =  Integer.parseInt(scanner.next());
-       Report report =new Report(logger.returnPayments());
-       switch (input){
+       Report report = new Report(logger.returnPayments());
+       switch ((input)){
 
            case 1:
                report.fliterMTD();
@@ -104,20 +131,24 @@ public class Screen {
                break;
            case 5:
                System.out.println(textFormatter.stringCenter("Enter The Name Of The Vendor Your Searching For"));
-               String vendor = scanner.nextLine();
-               report.searchVendor(vendor);
+               //String vendor = scanner.nextLine();
+               report.searchVendor();
                break;
            case 6:
+
+
+               //report.customSearch();
                System.out.println(textFormatter.stringCenter("I lOsT ThAt ONe"));
                break;
            case 0:
+               MusicPlayer.sound(3);
                ledger();
                break;
            default:
                System.out.println(textFormatter.stringCenter("Sorry I Do Not Have That Report, But I Have"));
                reports();
        }
-
+        reports();
     }
 
 }
