@@ -5,7 +5,7 @@ public class TextFormatter {
     }
 
     public String stringCenter(String text){
-        int spacing =(80 - text.length()) / 2;
+        int spacing =(60 - text.length()) / 2;
         String buffer = " ";
         for (int x = 1;x < spacing;x++){
             System.out.print(" ");
@@ -20,3 +20,4 @@ public class TextFormatter {
 
     }
 }
+//Collections.sort(transactions, Comparator.comparing(Transaction::getDate))

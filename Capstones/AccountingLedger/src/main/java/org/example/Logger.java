@@ -8,7 +8,7 @@ public class Logger {
     private File file = new File("src/main/resources/transactions.csv");
     public static BufferedWriter writer;
     public static BufferedReader reader;
-
+//class responsible for interacting with the csv
     public Logger() {
         try {
             FileReader fileReader = new FileReader(file);
@@ -20,16 +20,12 @@ public class Logger {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        //System.out.println("i ran");
     }
 
     public void logDeposit(Transaction transaction)  {
         try(BufferedWriter writer =  new BufferedWriter(new FileWriter(file,true))) {
             writer.newLine();
             writer.write(transaction.toString());
-
-
-            //this.writer.write(transaction.toString());
         }catch (IOException e){
             System.out.println(e);
         }
