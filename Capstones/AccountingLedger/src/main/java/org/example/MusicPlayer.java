@@ -7,7 +7,6 @@ import java.io.IOException;
 public class MusicPlayer {
 
     private static String[] jukeBox = {"src/main/resources/BackgroundMusic.wav","src/main/resources/Reports.wav","src/main/resources/Transition.wav","src/main/resources/Transition2.wav"};
-
     //Class is responsible for playing existing
     // Music and SFX from provided array
     public static void playMusic(){

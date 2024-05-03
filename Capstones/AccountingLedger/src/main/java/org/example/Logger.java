@@ -39,34 +39,11 @@ public class Logger {
         }
     }
     public void getAll() {
-        /*
-
-
-        String line;
-
-        try {
-            reader.readLine();
-            while ((line = reader.readLine()) != null) ;
-            String[] lineRead = line.split("\\|");
-            if (!lineRead[4].contains("-")) {
-                System.out.println(line);
-            }
-        }catch (IOException e){
-
-        }
-    }*/
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             reader.readLine();
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
-                //String[] productInfo = line.split("\\|");
-                //int id = Integer.parseInt(productInfo[0]);
-                //String name = productInfo[1];
-               // double price = Double.parseDouble(productInfo[2].replace(",", ""));
-                //String category = productInfo[3];
-                //Product product = new Product(id, name, price, category);
-                //inventory.add(product);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -113,7 +90,6 @@ public class Logger {
         String line;
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             reader.readLine();
-            //reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] lineRead = line.split("\\|");
                 Transaction transaction = new Transaction(lineRead[0],lineRead[1],lineRead[2],lineRead[3],lineRead[4]);

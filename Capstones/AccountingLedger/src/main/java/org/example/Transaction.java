@@ -1,7 +1,6 @@
 package org.example;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -27,7 +26,7 @@ public class Transaction {
         this.date = LocalDate.now();
         String currentTime = LocalTime.now().format(format2) ;
         this.time = LocalTime.parse(currentTime);
-        System.out.println(center.stringCenter("Please Enter A Description For The Transcation"));
+        System.out.println(center.stringCenter("Please Enter A Description For The Transaction"));
         this.description = scanner.nextLine();
         System.out.println(center.stringCenter("Who Was The Vendor For This Transaction"));
         this.vendor = scanner.nextLine();
@@ -95,7 +94,7 @@ public class Transaction {
         }
     }
     public String toString(){
-        String value = date +"|"+ time+ "|"+description+"|"+vendor+"|"+price;
+        String value = date +"|"+ time+"|"+description+"|"+vendor+"|"+price;
         return value;
     }
     //recursive method used by the constructor

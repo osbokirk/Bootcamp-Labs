@@ -167,20 +167,20 @@ public class Report {
         System.out.println(c.stringCenter("Enter The Description You Would Like To Search For" ));
         String description = scanner.nextLine();
         if (description.equals("")){
-            description = " ";
+            description = "";
         }
         output[3] = description;
 
         System.out.println(c.stringCenter("Enter The Description You Would Like To Search For" ));
         String vendor = scanner.nextLine();
         if (vendor.equals("")){
-            vendor = " ";
+            vendor = "";
         }
         output[4] = vendor;
         return output;
     }
     public String pullPrice(){
-        String price = " ";
+        String price = "100000000";
         TextFormatter c = new TextFormatter();
         System.out.println(c.stringCenter("Please Enter Your Max Price"));
         String temp = scanner.nextLine();
@@ -218,7 +218,7 @@ public class Report {
                 return true;
             }
         }else{
-            if(x.getDate().isAfter(LocalDate.parse(start)) && x.getDate().isAfter(LocalDate.parse(end))){
+            if(x.getDate().isAfter(LocalDate.parse(start,formatter)) && x.getDate().isBefore(LocalDate.parse(end,formatter))){
                 return true;
             }
         }
@@ -229,7 +229,7 @@ public class Report {
         for (Transaction x : Log) {
            if (x.getDescription().contains(input[3])
                    && x.getVendor().contains(input[4])
-                   && Double.parseDouble(input[2]) < x.getPrice()
+                   && x.getPrice() < Double.parseDouble(input[2])
                    &&  checkDateTime(x,input[0],input[1])){
                System.out.println(x);
            }
