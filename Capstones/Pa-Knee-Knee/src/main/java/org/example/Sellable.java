@@ -1,7 +1,7 @@
 package org.example;
 
-public abstract class Sellable {
-    public double getPrice(){
+public interface Sellable {
+    public default double getPrice(){
         return 0;
     }
 }
