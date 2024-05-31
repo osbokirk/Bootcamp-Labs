@@ -1,16 +1,49 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class Drink {
-    public static HashMap<String,Double> priceChart = new HashMap();
-    //("SMALL",2.00) ("Medium",2.50) ("Large",3.00)
-    public static List<String> flavorList = new ArrayList<>();
-    //"Straw Berry,Chocolate, Bannana
+import static java.util.Map.entry;
+
+public class Drink implements Sellable{
+    public static Map<String, Double> priceChart = Map.ofEntries(entry("Small",2.00),entry("Medium",2.50),entry("Large",3.00));
+    public static List<String> flavorList = Arrays.asList("strawBerry", "chocolate", "water");
     public String Size;
     public String flavor;
 
+    public Drink() {
+    }
+
+    public String getFlavor() {
+        return flavor;
+    }
+
+    public String getSize() {
+        return Size;
+    }
+
+    public static List<String> getFlavorList() {
+        return flavorList;
+    }
+
+
+
+    public void setSize(String size) {
+        Size = size;
+    }
+
+    public void setFlavor(String flavor) {
+        this.flavor = flavor;
+    }
+
+    public static void setFlavorList(List<String> flavorList) {
+        Drink.flavorList = flavorList;
+    }
+
+    public double getPrice(){
+        return priceChart.get(Size);
+    }
+    public String toString(){
+        String output = "Drink "+this.getFlavor() +"....."+this.getPrice();
+        return output;
+    }
 }

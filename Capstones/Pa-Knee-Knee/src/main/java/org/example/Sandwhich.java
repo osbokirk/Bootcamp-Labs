@@ -1,23 +1,27 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Map;
 
 public class Sandwhich implements Sellable {
-    public static List<String>  vegOptions= Stream.of("Onion","Tomatoes").collect(Collectors.toList());
-    public static List<String>  vegOptions2= List.of("Onion","Tomatoes");
-    public static List<String> meatOptions= Stream.of("Ham","Turkey").collect(Collectors.toList());
-    public static List<String>  cheeseOptions = Stream.of("Swiss","American").collect(Collectors.toList());
-    public static List<String>  breadOptions = Stream.of("White","Wheat").collect(Collectors.toList());
-    public static List<String>  sauceOptions = Stream.of("Vinegar","Olive Oil").collect(Collectors.toList());
+    public static List<String>  vegOptions= Arrays.asList("Lettuce","Onion","Tomatoes","Peppers","Jalepenos","Cucumber","Pickles","Guacamole","Mushrooms");
+    //public static List<String>  vegOptions2= List.of("Lettuce","Onion","Tomatoes","Peppers","Jalepenos","Cucumber","Pickles","Guacamole","Mushrooms");
+    public static List<String> meatOptions= Arrays.asList("Ham","Turkey","Steak","Salami","Roast");
+    public static List<String>  cheeseOptions = Arrays.asList("American","Provolone","Cheddar","Swiss");//Arra
+    public static List<String>  breadOptions = Arrays.asList("White","Wheat","Rye", "Wrap");
+    public static List<String> sauceOptions = Arrays.asList("Vinegar","Olive Oil","Mayo","Mustard","Ketchup","Ranch","Thousand Islands","Vinaigrette");
+    public static List<String> sideOptions = Arrays.asList("Au jus","Sauce");
+
 
     public HashMap<String,Double> meats = new HashMap<>();
     public HashMap <String,Double> veg = new HashMap<>();
     public HashMap <String,Double> cheeses = new HashMap<>();
     public HashMap <String,Double> sauseces = new HashMap<>();
-    boolean isToasted;
+    public HashMap <String,Double> sides= new HashMap<>();
+    boolean isToasted = false;
+
 
     public Sandwhich buildTest(){
         Sandwhich sammmy = new Sandwhich();
@@ -71,6 +75,13 @@ public class Sandwhich implements Sellable {
             cheeses.put(cheese,1.0);
         }
     }
+    public void addSide(String side){
+        if(sides.containsKey(side)){
+            sides.replace(side,sides.get(side)+1);
+        }else{
+            sides.put(side,1.0);
+        }
+    }
     public static Sandwhich buildBLT(Sandwhich s){
         s.addMeat("Bacon");
         s.addVeg("Lettuce");
@@ -81,22 +92,39 @@ public class Sandwhich implements Sellable {
         return s;
     }
     public String toString(){
-        String string = "Meats \n";
-        for(String meat : meats.keySet()){string = string + (meat +"...x"+ meats.get(meat))+"\n";}
-        for(String vegs : veg.keySet()){string = string + (vegs +"...x"+ veg.get(vegs))+"\n";}
-        for(String che : cheeses.keySet()){string = string + (che +"...x"+ cheeses.get(che))+"\n";}
-        for(String sau : sauseces.keySet()){string = string + (sau +"...x"+ sauseces.get(sau))+"\n";}
+        String string ="";
+        if( this.meats.keySet().size()>0){
+            string = string + "------MEATS-----\n";
+            for(Map.Entry<String, Double> meat : meats.entrySet()){
+                string = string + (meat.getKey() +"...*"+ meat.getValue())+"\n";
+            }
+        }
 
-        /*
-        this.meats.keySet().stream().map(x -> x.toString()).forEach(x -> string.concat(x + "x" + meats.get(x)));
-        string.concat("Cheeses");
-        this.cheeses.keySet().stream().forEach(x -> string.concat(x + "x" + cheeses.get(x) ));
-        this.veg.keySet().stream().forEach(x -> string.concat(x + "x" + veg.get(x) ));
-        this.sauseces.keySet().stream().forEach(x -> string.concat(x + "x" + sauseces.get(x) ));
-        string.concat(String.valueOf(isToasted));
+        if( this.veg.keySet().size()>0){
+            string = string + "------VEGGIES-----\n";
+            for(Map.Entry<String,Double> vegs : veg.entrySet()){
+                string = string + (vegs.getKey() +"...*"+ vegs.getValue())+"\n";
+            }
+        }
+        if( this.cheeses.keySet().size()>0){
+            string =string + "------CHEESES-----\n";
+            for(String che : cheeses.keySet()){
+                string = string + (che +"...*"+ cheeses.get(che))+"\n";
+            }
+        }
+        if( this.sauseces.keySet().size()>0){
+            string = string + "------SAUCES-----\n";
+            for(String sau : sauseces.keySet()){
+                string = string + (sau +"...*"+ sauseces.get(sau))+"\n";
+            }
+        }
+        if( this.sides.keySet().size()>0){
+            string = string + "______SIDES______\n";
+            for (String side: sides.keySet()){
+                string = string + (side + "...*"+ sides.get(side)) + "\n";
+            }
+        }
 
-
-         */
         return string;
     }
 }

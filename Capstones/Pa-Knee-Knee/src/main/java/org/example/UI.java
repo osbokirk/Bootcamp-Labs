@@ -11,8 +11,8 @@ public class UI {
         System.out.println("""
             WELCOME BACK      
             1)New Order:
-            0)EXIT:
-            """);
+            0)EXIT:""");
+        System.out.print("Select Option: ");
         String input = scanner.next();
         switch (input){
             case "1":
@@ -27,19 +27,23 @@ public class UI {
 
     public static void newOrder(){
         System.out.println("""
+                
                 What Do You Want
-                1)A Sandwhich
+                1)A Sandwich
                 2)A Drink
                 3)Some Chips
                 4)Checkout
-                0)Cancel Order
-                """);
+                0)Cancel Order""");
+        System.out.print("Select Option: ");
         String input = scanner.next();
         switch (input) {
             case "1":order.items.add(SandwhichBuilder.StartSando());
-            case "2"://drink
-            case "3"://chip
-            case "4"://checkout
+            newOrder();
+            case "3":order.items.add(ChipBuilder.makeChip());
+            newOrder();
+            case "2":order.items.add(DrinkBuilder.buildDrink(new Drink()));
+            newOrder();
+            case "4":checkOut();
             case "0": homeScreen();
             default:
                 System.out.println("Lets Try Again");
@@ -48,11 +52,11 @@ public class UI {
     }
 
     public static void checkOut(){
-        System.out.println(order.toString());
+        System.out.print(order.toString());
         System.out.println("""
                 1)Confirm
-                0)Cancel
-                """);
+                0)Cancel""");
+        System.out.print("Select A Option :");
         String input = scanner.next();
         switch (input){
             case "1":
