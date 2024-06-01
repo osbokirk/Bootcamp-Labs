@@ -1,0 +1,11 @@
+EIGHTINCH     16.3
+------MEATS-----
+Ham...*3.0
+Steak...*2.0
+------VEGGIES-----
+Lettuce...*1.0
+Tomatoes...*2.0
+------CHEESES-----
+American...*2.0
+Cheddar...*2.0
+

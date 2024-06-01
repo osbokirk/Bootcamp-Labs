@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pakneekneepos.SandwichController">
+   <children>
+      <Accordion layoutY="-1.0" prefHeight="313.0" prefWidth="600.0">
+        <panes>
+            <TitledPane animated="false" text="Select Size">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ChoiceBox fx:id="sizeSelector" layoutX="118.0" layoutY="27.0" prefHeight="27.0" prefWidth="327.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+          <TitledPane animated="false" prefHeight="131.0" prefWidth="600.0" text="Select Bread">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="106.0" prefWidth="598.0">
+                     <children>
+                        <ChoiceBox fx:id="breadSelcetor" layoutX="7.0" layoutY="8.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+          </TitledPane>
+          <TitledPane animated="false" text="AddMeats">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+
+                        <Spinner fx:id="Ham" layoutX="226.0" layoutY="8.0" />
+                        <Spinner fx:id="Turkey" layoutX="226.0" layoutY="33.0" />
+                        <Spinner fx:id="Steak" layoutX="226.0" layoutY="58.0" />
+                        <Spinner fx:id="Salami" layoutX="226.0" layoutY="83.0" />
+                        <Spinner fx:id="RoastBeef" layoutX="226.0" layoutY="108.0" />
+                        <Label layoutX="155.0" layoutY="7.0" prefHeight="27.0" prefWidth="71.0" text="Ham" />
+                        <Label layoutX="155.0" layoutY="32.0" prefHeight="27.0" prefWidth="71.0" text="Turkey" />
+                        <Label layoutX="155.0" layoutY="57.0" prefHeight="27.0" prefWidth="71.0" text="Steak" />
+                        <Label layoutX="155.0" layoutY="82.0" prefHeight="27.0" prefWidth="71.0" text="Salami" />
+                        <Label layoutX="155.0" layoutY="107.0" prefHeight="27.0" prefWidth="71.0" text="Roast" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Add Cheeses">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Spinner fx:id="American" layoutX="169.0" layoutY="8.0" />
+                        <Spinner fx:id="Provolone" layoutX="169.0" layoutY="33.0" />
+                        <Spinner fx:id="Cheddar" layoutX="169.0" layoutY="58.0" />
+                        <Spinner fx:id="Swiss" layoutX="169.0" layoutY="83.0" />
+                        <Label layoutX="98.0" layoutY="7.0" prefHeight="27.0" prefWidth="71.0" text="American" />
+                        <Label layoutX="98.0" layoutY="32.0" prefHeight="27.0" prefWidth="71.0" text="Provolone" />
+                        <Label layoutX="98.0" layoutY="57.0" prefHeight="27.0" prefWidth="71.0" text="Cheddar" />
+                        <Label layoutX="98.0" layoutY="82.0" prefHeight="27.0" prefWidth="71.0" text="Swiss" />
+                     </children>
+                  </AnchorPane>
+               </content>
+          </TitledPane>
+            <TitledPane animated="false" text="Add Vegtables">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Spinner fx:id="Lettuce" layoutX="118.0" layoutY="8.0" />
+                        <Spinner fx:id="Onion" layoutX="118.0" layoutY="33.0" />
+                        <Spinner fx:id="Tomatoes" layoutX="118.0" layoutY="58.0" />
+                        <Spinner fx:id="Peppers" layoutX="118.0" layoutY="83.0" />
+                        <Spinner fx:id="Jalepenos" layoutX="118.0" layoutY="108.0" />
+                        <Label layoutX="47.0" layoutY="7.0" prefHeight="27.0" prefWidth="71.0" text="Lettuce" />
+                        <Label layoutX="47.0" layoutY="32.0" prefHeight="27.0" prefWidth="71.0" text="Onion" />
+                        <Label layoutX="47.0" layoutY="57.0" prefHeight="27.0" prefWidth="71.0" text="Tomatoes" />
+                        <Label layoutX="47.0" layoutY="82.0" prefHeight="27.0" prefWidth="71.0" text="Peppers" />
+                        <Label layoutX="47.0" layoutY="107.0" prefHeight="27.0" prefWidth="71.0" text="Jalepenos" />
+                        <Spinner fx:id="Cucumber" layoutX="370.0" layoutY="8.0" />
+                        <Spinner fx:id="Pickles" layoutX="370.0" layoutY="33.0" />
+                        <Spinner fx:id="Guacomle" layoutX="370.0" layoutY="58.0" />
+                        <Spinner fx:id="Mushrooms" layoutX="370.0" layoutY="83.0" />
+                        <Label layoutX="299.0" layoutY="7.0" prefHeight="27.0" prefWidth="71.0" text="Cucumber" />
+                        <Label layoutX="299.0" layoutY="32.0" prefHeight="27.0" prefWidth="71.0" text="Pickles" />
+                        <Label layoutX="299.0" layoutY="57.0" prefHeight="27.0" prefWidth="71.0" text="Guacomle" />
+                        <Label layoutX="299.0" layoutY="82.0" prefHeight="27.0" prefWidth="71.0" text="Mushrooms" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Add Sauses" textAlignment="CENTER">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Spinner fx:id="Vinegar" layoutX="118.0" layoutY="8.0" />
+                        <Spinner fx:id="OliveOil" layoutX="118.0" layoutY="33.0" />
+                        <Spinner fx:id="Mayo" layoutX="118.0" layoutY="58.0" />
+                        <Spinner fx:id="Mustard" layoutX="118.0" layoutY="83.0" />
+                        <Spinner fx:id="Ketchup" layoutX="424.0" layoutY="83.0" />
+                        <Label layoutX="29.0" layoutY="8.0" prefHeight="27.0" prefWidth="71.0" text="Vinegar" />
+                        <Label layoutX="29.0" layoutY="32.0" prefHeight="27.0" prefWidth="71.0" text="Olive Oil" />
+                        <Label layoutX="29.0" layoutY="57.0" prefHeight="27.0" prefWidth="71.0" text="Mayo" />
+                        <Label layoutX="29.0" layoutY="82.0" prefHeight="27.0" prefWidth="71.0" text="Mustard" />
+                        <Label layoutX="353.0" layoutY="82.0" prefHeight="27.0" prefWidth="71.0" text="Ketchup" />
+                        <Spinner fx:id="Vinaigrette" layoutX="424.0" layoutY="58.0" />
+                        <Spinner fx:id="ThousandIsland" layoutX="424.0" layoutY="33.0" />
+                        <Spinner fx:id="Ranch" layoutX="424.0" layoutY="9.0" />
+                        <Label layoutX="353.0" layoutY="32.0" prefHeight="27.0" prefWidth="71.0" text="Thousand Island" />
+                        <Label layoutX="354.0" layoutY="57.0" prefHeight="27.0" prefWidth="71.0" text="Vinaigrette" />
+                        <Label layoutX="354.0" layoutY="8.0" prefHeight="27.0" prefWidth="71.0" text="Ranch" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Add Sides">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Spinner fx:id="AuJus" layoutX="192.0" layoutY="31.0" />
+                        <Spinner fx:id="Sauce" layoutX="192.0" layoutY="82.0" />
+                        <Label layoutX="128.0" layoutY="35.0" text="Au Jus" />
+                        <Label layoutX="128.0" layoutY="86.0" text="Sauce" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+      <Button layoutX="14.0" layoutY="334.0" mnemonicParsing="false" onAction="#back" prefHeight="42.0" prefWidth="121.0" text="Back" />
+      <Button layoutX="451.0" layoutY="334.0" mnemonicParsing="false" onAction="#submitItem" prefHeight="42.0" prefWidth="121.0" text="Submit" />
+   </children>
+    
+</AnchorPane>
