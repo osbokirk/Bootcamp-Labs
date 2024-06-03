@@ -148,10 +148,6 @@ public class SandwichController implements Initializable{
             root = loader.load();
             HelloController choiceController = loader.getController();
 
-
-            //System.out.println();
-
-            //root = FXMLLoader.load(getClass().getResource("Choices.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
