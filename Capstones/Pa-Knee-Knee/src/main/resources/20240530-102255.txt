@@ -1,8 +1,0 @@
-4InchSub .......7.25
-------MEATS-----
-Ham...*1.0
-------CHEESES-----
-American...*1.0
-------SAUCES-----
-Vinegar...*1.0
-

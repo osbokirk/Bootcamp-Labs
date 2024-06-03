@@ -1,10 +1,9 @@
 package org.example;
 
+
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FileMangerTest {
     @Test
@@ -21,9 +20,10 @@ class FileMangerTest {
     }
     @Test
     public void TestPrintSando(){
-        fourInchSub sub = new fourInchSub("White");
+        Sandwhich sub = new Sandwhich();
 
         Sandwhich.buildBLT(sub);
+        sub.setBread("Bread");
         sub.addVeg("Lettuce");
         Order order = new Order();
         order.items.add(sub);

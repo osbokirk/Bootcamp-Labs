@@ -7,7 +7,7 @@ public class ChipBuilder {
     public static Chip makeChip(){
         Chip chip = new Chip();
         System.out.println("---Chip Flavors--");
-        Chip.getFlavorsList().stream().forEach(x-> System.out.println(x));
+        //Chip.getFlavorsList().stream().forEach(x-> System.out.println(x));
         for(int x = 0;x<Chip.getFlavorsList().size();x++){
             System.out.println(x + ")" + Chip.getFlavorsList().get(x));
         }
@@ -16,7 +16,7 @@ public class ChipBuilder {
         boolean stop = false;
         do {
             String input = scanner.nextLine();
-            if (Chip.getFlavorsList().size() <= Integer.parseInt(input)) {
+            if (Chip.getFlavorsList().size() >= Integer.parseInt(input)) {
                 chip.setFlavor(Chip.getFlavorsList().get(Integer.parseInt(input)));
                 stop = true;
             }else{

@@ -1,5 +1,6 @@
 package org.example;
 
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,8 +9,10 @@ class SandwhichTest {
     @Test
     public void smallSub(){
         //arrange
-        fourInchSub sub = new fourInchSub("White");
+        Sandwhich sub = new Sandwhich();
         //act
+        sub.setSandwhichSize(SandwhichSize.FOURINCH);
+        sub.setBread("White");
         sub.addMeat("Ham");
         sub.addMeat("Ham");
         sub.addCheese("Swiss");
@@ -23,8 +26,10 @@ class SandwhichTest {
     @Test
     public void meduiumSub(){
         //arrange
-        eightInchSub sub = new eightInchSub("White");
+        Sandwhich sub = new Sandwhich();
         //act
+        sub.setSandwhichSize(SandwhichSize.EIGHTINCH);
+        sub.setBread("White");
         sub.addMeat("Ham");
         sub.addMeat("Ham");
         //sub.addMeat("Turkey");
@@ -38,8 +43,10 @@ class SandwhichTest {
     @Test
     public void LargeSub(){
         //arrange
-        twelveInchSub sub = new twelveInchSub("White");
+       Sandwhich sub = new Sandwhich();
         //act
+        sub.setSandwhichSize(SandwhichSize.TWELVEINCH);
+        sub.setBread("White");
         sub.addMeat("Ham");
         sub.addMeat("Ham");
         //sub.addMeat("Turkey");

@@ -47,7 +47,7 @@ public class DrinkBuilder {
             boolean stop = false;
             do {
                 String input = scanner.nextLine();
-                if (Drink.getFlavorList().size() <= Integer.parseInt(input)) {
+                if (Drink.getFlavorList().size() >= (int)Integer.parseInt(input)) {
                     drink.setFlavor(Drink.getFlavorList().get(Integer.parseInt(input)));
                     stop = true;
                 }else{
@@ -55,7 +55,7 @@ public class DrinkBuilder {
                     for (int x =0;x<Drink.getFlavorList().size();x++){
                         System.out.println(x+")"+Drink.getFlavorList().get(x));
                     }
-                    System.out.print("Select A Appropriate Option");
+                    System.out.print("Select A Appropriate Option :");
                 }
             }while(stop == false);
             return drink;

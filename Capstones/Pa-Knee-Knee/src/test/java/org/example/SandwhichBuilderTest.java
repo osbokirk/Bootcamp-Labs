@@ -1,5 +1,6 @@
 package org.example;
 
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -14,7 +15,8 @@ class SandwhichBuilderTest {
     public void BasicBuilder(){
         //arrange
         //act
-        fourInchSub sandwhich = new fourInchSub(SandwhichBuilder.chooseBread());
+        Sandwhich sandwhich = new Sandwhich();
+        sandwhich.setBread("Wheat");
         //assert
         assertEquals(sandwhich.getBread(),"Wheat");
     }
@@ -23,7 +25,9 @@ class SandwhichBuilderTest {
     public void ToppingBuilder(){
         //arrange
         List<String> answer = Arrays.stream(new String[]{"Ham","Turkey"}).toList();
-        fourInchSub sub = new fourInchSub("white");
+        Sandwhich sub = new Sandwhich();
+        sub.setSandwhichSize(SandwhichSize.FOURINCH);
+        sub.setBread("White");
         //act
         SandwhichBuilder.addMeats(sub);
         //assert

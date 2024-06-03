@@ -15,8 +15,7 @@ public class FileManger {
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/" + time + ".txt"))) {
            String s ;
-            //order.items.stream().forEach(x -> s.concat(x.toString()));
-            String test = order.items.get(0).toString();
+            //String test = order.items.get(0).toString();
             writer.write(order.toString());
         } catch (IOException e) {
             throw new RuntimeException(e);

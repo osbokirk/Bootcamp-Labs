@@ -25,9 +25,6 @@ public class SandwhichBuilder {
         }
         return sub;
     }
-
-
-
     public static Sandwhich selectSize(){
 
         Scanner scanner = new Scanner(System.in);
@@ -41,15 +38,21 @@ public class SandwhichBuilder {
         String input = scanner.next();
         switch (input){
             case "0":
-                fourInchSub smallSub = new fourInchSub(chooseBread());
+                Sandwhich smallSub = new Sandwhich();
+                smallSub.setSandwhichSize(SandwhichSize.FOURINCH);
+                //fourInchSub smallSub = new fourInchSub(chooseBread());
                 return smallSub;
 
             case "1":
-                eightInchSub medSub = new eightInchSub(chooseBread());
+                Sandwhich medSub = new Sandwhich();
+                medSub.setSandwhichSize(SandwhichSize.EIGHTINCH);
+                //eightInchSub medSub = new eightInchSub(chooseBread());
                 return medSub;
 
             case "2":
-                twelveInchSub longSub = new twelveInchSub(chooseBread());
+                Sandwhich longSub = new Sandwhich();
+                longSub.setSandwhichSize(SandwhichSize.TWELVEINCH);
+                //twelveInchSub longSub = new twelveInchSub(chooseBread());
                 return longSub;
 
             default:
@@ -68,9 +71,6 @@ public class SandwhichBuilder {
             return false;
         }
     }
-
-
-
     public static String chooseBread(){
         String bread = "";
         boolean breadSet = false;

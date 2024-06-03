@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class Sandwhich implements Sellable {
     public static List<String>  vegOptions= Arrays.asList("Lettuce","Onion","Tomatoes","Peppers","Jalepenos","Cucumber","Pickles","Guacamole","Mushrooms");
-    //public static List<String>  vegOptions2= List.of("Lettuce","Onion","Tomatoes","Peppers","Jalepenos","Cucumber","Pickles","Guacamole","Mushrooms");
     public static List<String> meatOptions= Arrays.asList("Ham","Turkey","Steak","Salami","Roast");
     public static List<String>  cheeseOptions = Arrays.asList("American","Provolone","Cheddar","Swiss");//Arra
     public static List<String>  breadOptions = Arrays.asList("White","Wheat","Rye", "Wrap");
@@ -15,17 +14,35 @@ public class Sandwhich implements Sellable {
     public static List<String> sideOptions = Arrays.asList("Au jus","Sauce");
 
 
+    public SandwhichSize sandwhichSize;
+    private String bread;
+    boolean isToasted = false;
     public HashMap<String,Double> meats = new HashMap<>();
     public HashMap <String,Double> veg = new HashMap<>();
     public HashMap <String,Double> cheeses = new HashMap<>();
     public HashMap <String,Double> sauseces = new HashMap<>();
     public HashMap <String,Double> sides= new HashMap<>();
-    boolean isToasted = false;
 
+
+    public String getBread() {
+        return bread;
+    }
+
+    public void setBread(String bread) {
+        this.bread = bread;
+    }
 
     public Sandwhich buildTest(){
         Sandwhich sammmy = new Sandwhich();
         return sammmy;
+    }
+
+    public SandwhichSize getSandwhichSize() {
+        return sandwhichSize;
+    }
+
+    public void setSandwhichSize(SandwhichSize sandwhichSize) {
+        this.sandwhichSize = sandwhichSize;
     }
 
     public static List<String> getVegOptions() {
@@ -93,6 +110,11 @@ public class Sandwhich implements Sellable {
     }
     public String toString(){
         String string ="";
+
+        string = sandwhichSize.getSize()+" ......."+ getPrice()+"\n" ;
+        if(isToasted =true){
+            string = string+ "---Toasted----\n";
+        }
         if( this.meats.keySet().size()>0){
             string = string + "------MEATS-----\n";
             for(Map.Entry<String, Double> meat : meats.entrySet()){
@@ -126,5 +148,13 @@ public class Sandwhich implements Sellable {
         }
 
         return string;
+    }
+    public double getPrice() {
+        double total  = this.sandwhichSize.getBase();
+        int meatCount = (int) this.meats.values().stream().mapToDouble(value -> value).sum();
+        if(meatCount >= 1){total += sandwhichSize.getMeat() + (meatCount - 1) * sandwhichSize.getExtraMeat();}
+        int cheeseCount = (int) this.cheeses.values().stream().mapToDouble(value -> value).sum();
+        if(cheeseCount >= 1){total += sandwhichSize.getCheese() + (cheeseCount -1) * sandwhichSize.getExtraCheese();}
+        return total;
     }
 }

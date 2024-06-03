@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Chip implements Sellable {
     public static List<String> flavorsList = List.of("sourCream && onion","cheese puff","original", "bbq");
-    //
     private String flavor;
     public final double price  = 1.50;
 
