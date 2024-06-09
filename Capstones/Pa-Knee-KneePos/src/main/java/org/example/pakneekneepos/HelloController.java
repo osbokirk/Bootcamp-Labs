@@ -1,9 +1,5 @@
 package org.example.pakneekneepos;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +8,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +27,8 @@ public class HelloController implements Initializable {
     Label orderPrint = new Label();
     @FXML
     Label orderLabel = new Label(order.items.toString());
+
+
     @FXML
     TextArea orderTotal = new TextArea("Total");
     //public ListView<String> orderLabel = new ListView<>();
@@ -39,6 +36,7 @@ public class HelloController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //System.out.println(order.toString());
+        //orderLabel.setContent((Node)order.items.toString()   );
         orderLabel.setText(order.toString());
         //Order.getItems().addAll(Chip.getFlavorsList());
         //chipFlavor.setValue("BBQ");

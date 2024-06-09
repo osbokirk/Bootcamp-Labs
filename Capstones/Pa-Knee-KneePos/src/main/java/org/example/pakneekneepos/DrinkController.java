@@ -1,6 +1,4 @@
 package org.example.pakneekneepos;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,24 +29,28 @@ public class DrinkController implements Initializable {
         sizeOptions .setItems(FXCollections.observableList(Drink.priceChart.keySet().stream().toList()));
     }
     public void submitItem(ActionEvent event) throws IOException {
-        Drink drink = new Drink();
-        drink.setFlavor(flavorOptions.getValue());
-        drink.setSize(sizeOptions.getValue());
-        //drink.setPrice();
-        HelloController.order.items.add(drink);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Choices.fxml"));
-        root =loader.load();
-        HelloController choiceController = loader.getController();
+        if( flavorOptions.getValue()==null || sizeOptions.getValue() == null){
+            System.out.println("sorry no can do");
+        }else {
+
+            Drink drink = new Drink();
+            drink.setFlavor(flavorOptions.getValue());
+            drink.setSize(sizeOptions.getValue());
+            //drink.setPrice();
+            HelloController.order.items.add(drink);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Choices.fxml"));
+            root = loader.load();
+            HelloController choiceController = loader.getController();
 
 
-        //System.out.println();
+            //System.out.println();
 
-        //root = FXMLLoader.load(getClass().getResource("Choices.fxml"));
-        stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
+            //root = FXMLLoader.load(getClass().getResource("Choices.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
     public void back(ActionEvent event)throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Choices.fxml"));
