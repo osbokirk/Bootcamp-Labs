@@ -17,7 +17,6 @@ import java.util.List;
 @Repository
 public class DealershipRepository {
     @Autowired
-
     private DataSource basicDataSource;
    /* public DealershipRepository(String url, String userName, String password){
         basicDataSource = new BasicDataSource();

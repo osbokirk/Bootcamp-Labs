@@ -1,10 +1,8 @@
 package com.example.VehicleBackEnd.Repository;
 
 
-import com.example.VehicleBackEnd.Model.LeaseContract;
-import com.example.VehicleBackEnd.Model.SalesContract;
+import com.example.VehicleBackEnd.Model.*;
 //import org.apache.commons.dbcp2.BasicDataSource;
-import com.example.VehicleBackEnd.Model.Vehicle;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,10 +28,10 @@ public class ContractRepository {
     }
 
      */
-    public void addLeaseContract(LeaseContract contract){
+    public void addLeaseContract(LeaseContractDTO contract){
         String query = "{Call AddLeaseContract(?,?,?,?,?)}";
         try (Connection con = basicDataSource.getConnection(); CallableStatement callableStatement = con.prepareCall(query)){
-            callableStatement.setString(1,contract.getVehicleSold().getVin());
+            callableStatement.setString(1,contract.Vin);
             callableStatement.setFloat(2,(float) contract.endingValue);
             callableStatement.setFloat(3,(float) contract.leaseFeeCharge);
             callableStatement.setFloat(4,(float) contract.monthlyPayment);
@@ -43,9 +41,9 @@ public class ContractRepository {
             ex.printStackTrace();
         }
     }
-    public LeaseContract getLeaseContractById(int contractId){
+    public LeaseContractDTO getLeaseContractById(int contractId){
         String query = "{Call GetLeaseContractById(?)}";
-        List<LeaseContract>  contract = new ArrayList<>();
+        List<LeaseContractDTO>  contract = new ArrayList<>();
         try(Connection connection = basicDataSource.getConnection();CallableStatement call = connection.prepareCall(query)){
             call.setInt(1,contractId);
             ResultSet resultSet =  call.executeQuery();
@@ -53,12 +51,20 @@ public class ContractRepository {
                 String date = resultSet.getString(1);
                 String customerName = resultSet.getString("CustomerName");
                 String email = resultSet.getString("Email");
-                DealershipRepository  dealershipRepository = new DealershipRepository();
-                Vehicle vehicleSold = dealershipRepository.ById(resultSet.getString("Vin"));
+                //DealershipRepository  dealershipRepository = new DealershipRepository();
+                //Vehicle vehicleSold = dealershipRepository.ById(resultSet.getString("Vin"));
+                String vin  = resultSet.getString("Vin");
                 String contractDate = resultSet.getString("ContractDate");
+                double totalPrice = resultSet.getDouble("TotalPrice");
+                double monthlyPayment = resultSet.getDouble("MonthlyPayment");
+                double endingValue = resultSet.getDouble("EndingingValue");
+                double leaseFeeCharge = resultSet.getDouble("LeaseFeeCharge");
+                double intrestRate = resultSet.getDouble("InterestRate");
 
-                LeaseContract contract1 = new LeaseContract(contractDate,customerName,email,vehicleSold);
-                contract.add(contract1);
+
+                //LeaseContract contract1 = new LeaseContract(contractDate,customerName,email,vehicleSold);
+                LeaseContractDTO contractDTO = new LeaseContractDTO(date,customerName,email,totalPrice,monthlyPayment,endingValue,leaseFeeCharge,intrestRate,vin);
+                contract.add(contractDTO);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,10 +72,10 @@ public class ContractRepository {
         return contract.get(0);
     }
 
-    public void addSalesContract(SalesContract contract){
+    public void addSalesContract(SalesContractDTO contract){
         String query = "{Call AddSalesContract(?,?,?,?,?,?,?,?)}";
         try (Connection con = basicDataSource.getConnection();CallableStatement call = con.prepareCall(query)){
-            call.setString(1,contract.getVehicleSold().getVin());
+            call.setString(1,contract.getVin());
             call.setFloat(2,(float) contract.getSalesTaxAmmount());
             call.setBoolean(3,contract.isFinanced());
             call.setInt(4, contract.getTermLenght());

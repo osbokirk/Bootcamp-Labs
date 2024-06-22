@@ -64,4 +64,28 @@ public class LeaseContract extends Contract {
         //EndingValue|LeaseFee|Total|Monthly
         return x;
     }
+
+    public double getDeprecationAmmount() {
+        return deprecationAmmount;
+    }
+
+    public double getEndingValue() {
+        return endingValue;
+    }
+
+    public double getLeaseFee() {
+        return leaseFee;
+    }
+
+    public double getLeaseFeeCharge() {
+        return leaseFeeCharge;
+    }
+
+    public double getIntrestRate() {
+        return intrestRate;
+    }
+
+    public double getTermLenght() {
+        return termLenght;
+    }
 }
