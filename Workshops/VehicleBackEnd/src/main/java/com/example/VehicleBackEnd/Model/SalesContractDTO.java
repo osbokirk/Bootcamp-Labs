@@ -8,14 +8,27 @@ public class SalesContractDTO {
     public String customerName;
     public String email;
     public String vin;
+    private int termLenght;
     private double salesTaxAmmount;
     private double processingFee;
-    private boolean isFinanced;
     private double intrestRate;
-    private int termLenght;
     private double monthlyPayment;
     private double totalPrice;
-
+    private boolean isFinanced;
+    public SalesContractDTO(String date,String customerName,String email,String vin,int termLenght,double salesTaxAmmount,
+                double processingFee,double intrestRate,double monthlyPayment,double totalPrice,boolean isFinanced){
+        this.date = date;
+        this.customerName = customerName;
+        this.email = email;
+        this.vin = vin;
+        this.termLenght = termLenght;
+        this.salesTaxAmmount = salesTaxAmmount;
+        this.processingFee = processingFee;
+        this.intrestRate = intrestRate;
+        this.monthlyPayment = monthlyPayment;
+        this.totalPrice = totalPrice;
+        this.isFinanced = isFinanced;
+    }
     public SalesContractDTO() {
     }
     public SalesContractDTO(SalesContract contract){
@@ -32,91 +45,48 @@ public class SalesContractDTO {
         totalPrice = contract.getTotalPrice();
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public double getMonthlyPayment() {
-        return monthlyPayment;
-    }
-
-    public void setMonthlyPayment(double monthlyPayment) {
-        this.monthlyPayment = monthlyPayment;
-    }
 
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getCustomerName() {
         return customerName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getVin() {
         return vin;
     }
 
-    public void setVin(String vin) {
-        this.vin = vin;
-    }
-
     public double getSalesTaxAmmount() {
         return salesTaxAmmount;
-    }
-
-    public void setSalesTaxAmmount(double salesTaxAmmount) {
-        this.salesTaxAmmount = salesTaxAmmount;
     }
 
     public double getProcessingFee() {
         return processingFee;
     }
 
-    public void setProcessingFee(double processingFee) {
-        this.processingFee = processingFee;
-    }
-
     public boolean isFinanced() {
         return isFinanced;
-    }
-
-    public void setFinanced(boolean financed) {
-        isFinanced = financed;
     }
 
     public double getIntrestRate() {
         return intrestRate;
     }
 
-    public void setIntrestRate(double intrestRate) {
-        this.intrestRate = intrestRate;
-    }
-
     public int getTermLenght() {
         return termLenght;
     }
 
-    public void setTermLenght(int termLenght) {
-        this.termLenght = termLenght;
+    public double getMonthlyPayment() {
+        return monthlyPayment;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
     }
 }

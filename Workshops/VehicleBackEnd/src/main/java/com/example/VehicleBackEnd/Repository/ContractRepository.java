@@ -41,6 +41,7 @@ public class ContractRepository {
             ex.printStackTrace();
         }
     }
+
     public LeaseContractDTO getLeaseContractById(int contractId){
         String query = "{Call GetLeaseContractById(?)}";
         List<LeaseContractDTO>  contract = new ArrayList<>();
@@ -48,21 +49,17 @@ public class ContractRepository {
             call.setInt(1,contractId);
             ResultSet resultSet =  call.executeQuery();
             while(resultSet.next()){
-                String date = resultSet.getString(1);
+                String date = resultSet.getString("ContractDate");
                 String customerName = resultSet.getString("CustomerName");
                 String email = resultSet.getString("Email");
-                //DealershipRepository  dealershipRepository = new DealershipRepository();
-                //Vehicle vehicleSold = dealershipRepository.ById(resultSet.getString("Vin"));
                 String vin  = resultSet.getString("Vin");
-                String contractDate = resultSet.getString("ContractDate");
+
                 double totalPrice = resultSet.getDouble("TotalPrice");
                 double monthlyPayment = resultSet.getDouble("MonthlyPayment");
                 double endingValue = resultSet.getDouble("EndingingValue");
                 double leaseFeeCharge = resultSet.getDouble("LeaseFeeCharge");
                 double intrestRate = resultSet.getDouble("InterestRate");
 
-
-                //LeaseContract contract1 = new LeaseContract(contractDate,customerName,email,vehicleSold);
                 LeaseContractDTO contractDTO = new LeaseContractDTO(date,customerName,email,totalPrice,monthlyPayment,endingValue,leaseFeeCharge,intrestRate,vin);
                 contract.add(contractDTO);
             }
@@ -88,15 +85,34 @@ public class ContractRepository {
             ex.printStackTrace();
         }
     }
-    public SalesContract getSalesContractById(int SaleContactId){
+
+    public SalesContractDTO getSalesContractById(int SaleContactId){
         String query = "{Call GetSalesContractById(?)}";
-        SalesContract contract = null;
+        List<SalesContractDTO> contracts = new ArrayList<>();
         try(Connection connection = basicDataSource.getConnection();CallableStatement call = connection.prepareCall(query)){
             call.setInt(1,SaleContactId);
-            contract = (SalesContract) call.executeQuery();
-        } catch (SQLException e) {
-           e.printStackTrace();
+            ResultSet resultSet =  call.executeQuery();
+            while(resultSet.next()){
+                String date = resultSet.getString("ContractDate");
+                String customerName = resultSet.getString("CustomerName");
+                String email = resultSet.getString("Email");
+                String vin  = resultSet.getString("Vin");
+                int termLength = resultSet.getInt("TermLenght");
+                double totalPrice = resultSet.getDouble("TotalPrice");
+                double monthlyPayment = resultSet.getDouble("MonthlyPayment");
+                //double endingValue = resultSet.getDouble("EndingingValue");
+                //double leaseFeeCharge = resultSet.getDouble("LeaseFeeCharge");
+                double intrestRate = resultSet.getDouble("InterestRate");
+                double salesTaxAmmount = resultSet.getDouble("salesTaxAmmount");
+                double processingFee = resultSet.getDouble("ProcessingFee");
+                boolean isFinanced = resultSet.getBoolean("isFinanced");
+
+                SalesContractDTO contractDTO = new SalesContractDTO(date,customerName,email,vin,termLength,salesTaxAmmount,processingFee,intrestRate,monthlyPayment,totalPrice,isFinanced);
+                contracts.add(contractDTO);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
-        return contract;
+        return contracts.get(0);
     }
 }

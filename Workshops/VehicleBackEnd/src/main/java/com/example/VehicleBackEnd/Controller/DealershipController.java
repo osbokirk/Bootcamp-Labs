@@ -64,10 +64,19 @@ public class DealershipController {
     }
 
 
-    //DOES NOT WORK
+    //Should work But would require whole vehicle info
     @PutMapping("update/{dealerShipId}")
     public ResponseEntity<Vehicle> updateVehicle(@RequestBody Vehicle vehicle,@PathVariable int dealerShipId){
-        dealershipRepository.addVehicle(vehicle,dealerShipId);
+        Vehicle vehicleToUpdate = dealershipRepository.ById(vehicle.getVin());
+        vehicleToUpdate.setVehicleType(vehicle.getVehicleType());
+        vehicleToUpdate.setMake(vehicle.getMake());
+        vehicleToUpdate.setColor(vehicle.getColor());
+        vehicleToUpdate.setModel(vehicle.getModel());
+        vehicleToUpdate.setOdometer(vehicle.getOdometer());
+        vehicleToUpdate.setVin(vehicle.getVin());
+        vehicleToUpdate.setPrice(vehicle.getPrice());
+        vehicleToUpdate.setYear(vehicle.getYear());
+        dealershipRepository.addVehicle(vehicleToUpdate,dealerShipId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

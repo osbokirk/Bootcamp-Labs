@@ -7,30 +7,29 @@ public class LeaseContractDTO {
     public String date;
     public String customerName;
     public String email;
-
+    public String Vin;
     public double totalPrice;
     public double monthlyPayment;
     public double endingValue;
     public double leaseFeeCharge;
     public double intrestRate ;//4%
 
-    public String Vin;
+
 
     public LeaseContractDTO(LeaseContract contract) {
-    date = contract.getDate();
-    customerName = contract.getCustomerName();
-    email = contract.getEmail();
-    Vin = contract.getVehicleSold().getVin();
-    totalPrice = contract.getTotalPrice();
-    monthlyPayment = contract.getMonthlyPayment();
-    endingValue = contract.getEndingValue();
-    leaseFeeCharge = contract.getLeaseFeeCharge();
-    intrestRate = contract.getIntrestRate();
+        date = contract.getDate();
+        customerName = contract.getCustomerName();
+        email = contract.getEmail();
+        Vin = contract.getVehicleSold().getVin();
+        totalPrice = contract.getTotalPrice();
+        monthlyPayment = contract.getMonthlyPayment();
+        endingValue = contract.getEndingValue();
+        leaseFeeCharge = contract.getLeaseFeeCharge();
+        intrestRate = contract.getIntrestRate();
     }
     public LeaseContractDTO(){}
-    public LeaseContractDTO(String date, String customerName, String email, double totalPrice, double monthlyPayment, double endingValue, double leaseFeeCharge, double intrestRate, String vin){}
 
-    public LeaseContractDTO(String date, String customerName, String email, double totalPrice, double monthlyPayment, double endingValue, double leaseFeeCharge, double intrestRate, String contractDate, String vin) {
+    public LeaseContractDTO(String date, String customerName, String email, double totalPrice, double monthlyPayment, double endingValue, double leaseFeeCharge, double intrestRate,  String vin) {
         this.date = date;
         this.customerName = customerName;
         this.email = email;
@@ -39,8 +38,7 @@ public class LeaseContractDTO {
         this.endingValue = endingValue;
         this.leaseFeeCharge = leaseFeeCharge;
         this.intrestRate = intrestRate;
-
-        Vin = vin;
+        this.Vin = vin;
     }
 
     public String getDate() {

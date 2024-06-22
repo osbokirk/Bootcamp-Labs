@@ -242,7 +242,6 @@ public class DealershipRepository {
                 int odometer = resultSet.getInt("Odometer");
                 double price = resultSet.getFloat("Price");
                 vehicle =  new Vehicle(r,modelYear,make,model,vehicleType,color,odometer,price);
-
             }
         }catch (SQLException ex){
             ex.printStackTrace();

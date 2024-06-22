@@ -19,7 +19,7 @@ public class ContractController {
     private ContractRepository contractRepository;
 
     @GetMapping("/Sales/{contractId}")
-    public ResponseEntity<SalesContract> getSalesContract(@PathVariable int contractId){
+    public ResponseEntity<SalesContractDTO> getSalesContract(@PathVariable int contractId){
         var contract = contractRepository.getSalesContractById(contractId);
         return new ResponseEntity<>(contract,HttpStatus.OK);
     }
