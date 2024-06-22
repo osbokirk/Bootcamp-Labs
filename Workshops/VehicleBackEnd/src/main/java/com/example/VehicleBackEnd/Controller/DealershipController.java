@@ -2,23 +2,73 @@ package com.example.VehicleBackEnd.Controller;
 
 import com.example.VehicleBackEnd.Model.Vehicle;
 import com.example.VehicleBackEnd.Repository.DealershipRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/Dealership")
 public class DealershipController {
-    private DealershipRepository dealershipRepository = new DealershipRepository();
+    @Autowired
+    private DealershipRepository dealershipRepository;
+
     @GetMapping("/{dealerShipId}")
-    public ResponseEntity<List<Vehicle>> getVehicles(@PathVariable int dealerShipID){
-        var vehicles = dealershipRepository.GetAll(dealerShipID);
+    public ResponseEntity<List<Vehicle>> getVehicles(@PathVariable Integer dealerShipId){
+        var vehicles = dealershipRepository.GetAll(dealerShipId);
         return new ResponseEntity<>(vehicles, HttpStatus.OK);
+    }
+    @GetMapping("/{dealerShipId}/ByColor/{color}")
+    public ResponseEntity<List<Vehicle>> getByColor(@PathVariable  Integer dealerShipId,@PathVariable String color){
+        var Vehicles = dealershipRepository.ByColor(color,dealerShipId);
+        return new ResponseEntity<>(Vehicles,HttpStatus.OK);
+    }
+    @GetMapping("/{dealerShipId}/ByType/{type}")
+    public ResponseEntity<List<Vehicle>> getByType (@PathVariable int dealerShipId,@PathVariable String type){
+        var vehicles = dealershipRepository.ByType(type,dealerShipId);
+        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+    }
+    @GetMapping("/{dealerShipId}/PriceBetween")
+    public ResponseEntity<List<Vehicle>> getByPrice(@RequestParam(defaultValue = "0") double min, @RequestParam(defaultValue = "200000") double max, @PathVariable int dealerShipId){
+        var vehicles = dealershipRepository.ByPriceRange(min,max,dealerShipId);
+        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+    }
+    @GetMapping("/{dealerShipId}/YearBetween")
+    public ResponseEntity<List<Vehicle>> getByYear(@RequestParam(defaultValue = "0") int min,@RequestParam(defaultValue = "0") int max,@PathVariable int dealerShipId){
+        var vehicles = dealershipRepository.ByYear(min,max,dealerShipId);
+        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+    }
+    @GetMapping("/{dealerShipId}/MileageBetween")
+    public ResponseEntity<List<Vehicle>> getByMilage(@RequestParam(defaultValue = "0") int min,@RequestParam(defaultValue = "0") int max,@PathVariable int dealerShipId){
+        var vehicles = dealershipRepository.ByYear(min,max,dealerShipId);
+        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+    }
+    @GetMapping("/{dealerShipId}/VehilceMake")
+    public ResponseEntity<List<Vehicle>> getByMakeModel(@RequestParam(defaultValue = "") String make,@RequestParam(defaultValue = "") String model,@PathVariable int dealerShipId){
+        var vehicles = dealershipRepository.ByMakeModel(make, model, dealerShipId);
+        return new ResponseEntity<>(vehicles,HttpStatus.OK);
+    }
+    @PostMapping("add/{dealerShipId}")
+    public ResponseEntity<Vehicle> addVehicle(@RequestBody Vehicle vehicle,@PathVariable int dealerShipId){
+        dealershipRepository.addVehicle(vehicle,dealerShipId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping("/Delete")
+    public ResponseEntity<Void> deletedVehicle(@RequestBody Vehicle vehicle){
+        dealershipRepository.removeVehicle(vehicle);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    //DOES NOT WORK
+    @PutMapping("update/{dealerShipId}")
+    public ResponseEntity<Vehicle> updateVehicle(@RequestBody Vehicle vehicle,@PathVariable int dealerShipId){
+        dealershipRepository.addVehicle(vehicle,dealerShipId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

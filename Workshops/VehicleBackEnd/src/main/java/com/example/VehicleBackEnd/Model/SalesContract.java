@@ -43,7 +43,7 @@ public class SalesContract extends Contract {
         totalPrice = getTotalPrice();
 
     }
-
+    public SalesContract(){}
     @Override
     public double getTotalPrice() {
         double v = (double) vehicleSold.getPrice() + salesTaxAmmount + recordingFee + processingFee;

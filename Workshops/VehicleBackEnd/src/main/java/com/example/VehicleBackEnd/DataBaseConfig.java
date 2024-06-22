@@ -4,12 +4,11 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
 @Configuration
-public class DataBaseConfiguration {
+public class DataBaseConfig {
     @Value("${spring.datasource.url}")
     private String dbUrl;
 

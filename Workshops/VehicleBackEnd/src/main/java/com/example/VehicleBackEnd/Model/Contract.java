@@ -2,7 +2,7 @@ package com.example.VehicleBackEnd.Model;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public abstract class Contract {
     public String date;
     public String customerName;
@@ -16,6 +16,9 @@ public abstract class Contract {
         this.customerName = customerName;
         this.email = email;
         this.vehicleSold = vehicleSold;
+    }
+    public Contract(){
+
     }
 
     public String getDate() {

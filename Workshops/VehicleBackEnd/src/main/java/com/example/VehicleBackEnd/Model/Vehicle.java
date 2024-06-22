@@ -1,12 +1,11 @@
 package com.example.VehicleBackEnd.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class Vehicle {
-    @Id
+
     private String vin;
     private int year;
     private String model; 
@@ -16,6 +15,7 @@ public class Vehicle {
     private int odometer;
     private double price;
 
+    public Vehicle(){}
     public Vehicle(String vin, int year, String make, String model, String vehicleType, String color , int odometer, double price) {
         this.vin = vin;
         this.year = year;

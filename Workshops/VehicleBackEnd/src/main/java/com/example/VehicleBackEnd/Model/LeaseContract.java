@@ -25,6 +25,9 @@ public class LeaseContract extends Contract {
         this.monthlyPayment = getMonthlyPayment();
         this.totalPrice = getTotalPrice();
     }
+    public LeaseContract(){
+
+    }
 
     @Override
     public double getTotalPrice() {

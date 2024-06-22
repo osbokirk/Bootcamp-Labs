@@ -4,17 +4,23 @@ package com.example.VehicleBackEnd.Repository;
 import com.example.VehicleBackEnd.Model.LeaseContract;
 import com.example.VehicleBackEnd.Model.SalesContract;
 //import org.apache.commons.dbcp2.BasicDataSource;
+import com.example.VehicleBackEnd.Model.Vehicle;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class ContractRepository {
     @Autowired
-    private BasicDataSource basicDataSource;
+    private DataSource basicDataSource;
 
     /*public ContractRepository(String url, String userName, String password){
         basicDataSource = new BasicDataSource();
@@ -37,6 +43,29 @@ public class ContractRepository {
             ex.printStackTrace();
         }
     }
+    public LeaseContract getLeaseContractById(int contractId){
+        String query = "{Call GetLeaseContractById(?)}";
+        List<LeaseContract>  contract = new ArrayList<>();
+        try(Connection connection = basicDataSource.getConnection();CallableStatement call = connection.prepareCall(query)){
+            call.setInt(1,contractId);
+            ResultSet resultSet =  call.executeQuery();
+            while(resultSet.next()){
+                String date = resultSet.getString(1);
+                String customerName = resultSet.getString("CustomerName");
+                String email = resultSet.getString("Email");
+                DealershipRepository  dealershipRepository = new DealershipRepository();
+                Vehicle vehicleSold = dealershipRepository.ById(resultSet.getString("Vin"));
+                String contractDate = resultSet.getString("ContractDate");
+
+                LeaseContract contract1 = new LeaseContract(contractDate,customerName,email,vehicleSold);
+                contract.add(contract1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return contract.get(0);
+    }
+
     public void addSalesContract(SalesContract contract){
         String query = "{Call AddSalesContract(?,?,?,?,?,?,?,?)}";
         try (Connection con = basicDataSource.getConnection();CallableStatement call = con.prepareCall(query)){
@@ -53,5 +82,15 @@ public class ContractRepository {
             ex.printStackTrace();
         }
     }
-
+    public SalesContract getSalesContractById(int SaleContactId){
+        String query = "{Call GetSalesContractById(?)}";
+        SalesContract contract = null;
+        try(Connection connection = basicDataSource.getConnection();CallableStatement call = connection.prepareCall(query)){
+            call.setInt(1,SaleContactId);
+            contract = (SalesContract) call.executeQuery();
+        } catch (SQLException e) {
+           e.printStackTrace();
+        }
+        return contract;
+    }
 }

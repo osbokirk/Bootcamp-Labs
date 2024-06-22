@@ -6,6 +6,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,7 +17,8 @@ import java.util.List;
 @Repository
 public class DealershipRepository {
     @Autowired
-    private BasicDataSource basicDataSource;
+
+    private DataSource basicDataSource;
    /* public DealershipRepository(String url, String userName, String password){
         basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(url);
@@ -225,4 +227,29 @@ public class DealershipRepository {
         }
         return vehicleList;
     }
+    public Vehicle ById(String vin){
+     String preparedStatement = "{Call VehicleByVin(?)}";
+     Vehicle vehicle = new Vehicle();
+        try (Connection connection = basicDataSource.getConnection();CallableStatement query = connection.prepareCall(preparedStatement)){
+            query.setString(1,vin);
+            ResultSet resultSet = query.executeQuery();
+            while (resultSet.next()){
+                String r = resultSet.getString("Vin");
+                int modelYear= resultSet.getInt("ModelYear");
+                String model = resultSet.getString("Model");
+                String make = resultSet.getString("Make");
+                String vehicleType = resultSet.getString("VehicleType");
+                String color = resultSet.getString("Color");
+                int odometer = resultSet.getInt("Odometer");
+                double price = resultSet.getFloat("Price");
+                vehicle =  new Vehicle(r,modelYear,make,model,vehicleType,color,odometer,price);
+
+            }
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return vehicle;
+
+    }
+
 }
